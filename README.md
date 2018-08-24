@@ -43,6 +43,7 @@ We are trying to put up a proper roadmap for the beta release. Until then please
 
 ### Core
 
+- Test
 - [webdriver](https://github.com/webdriverio/webdriverio/tree/master/packages/webdriver) - A Node.js bindings implementation for the W3C WebDriver and Mobile JSONWire Protocol
 - [webdriverio](https://github.com/webdriverio/webdriverio/blob/master/packages/webdriverio) - A next-gen WebDriver test automation framework for Node.js
 - [wdio-cli](https://github.com/webdriverio/webdriverio/tree/master/packages/wdio-cli) - A WebdriverIO testrunner command line interface
