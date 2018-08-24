@@ -1,6 +1,3 @@
-build/
-examples/
-bin/
-node_modules/
-test/site/platforms/
-test/site/www/components/
+/packages/**/build
+/packages/**/node_modules
+/packages/**/coverage

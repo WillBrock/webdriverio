@@ -1,175 +1,96 @@
 # Contributing
 
-## Code
+This repository contains all necessary packages of the WebdriverIO project (excluding plugins that were contributed by 3rd party developers). These packages have individual descriptions in their README files (`/packages/<package>/README.md`) providing information about their scope and responsibilities. Even though the build commands might differ from package to package the way to work with these is the same. This project uses [Lerna](https://lernajs.io/) to manage all its subprojects in this monolith repository.
 
-We love pull requests. Here's a quick guide:
+We are trying to make contributing to this project as easy and transparent as possible. If there is any information missing that prevents you from sending in a pull request, please let us know. We treat these kind of issues like actual bugs.
 
-1. Fork the repo.
+Also if there is anything that needs to get simplified, also please let us know.
 
-2. Run the tests. We only take pull requests with passing tests, and it's great
-to know that you have a clean state.
+## Set Up Project
 
-3. Add a test for your change. Only refactoring and documentation changes require no new tests. If you are adding functionality or fixing a bug, we need a test!
+In order to set up this project and start contributing follow this step by step guide:
 
-4. Make the test pass.
+* Fork the project.
+* Clone the project somewhere on your computer
 
-5. Push to your fork and submit a pull request.
+    ```sh
+    $ git clone git@github.com:<your-username>/webdriverio.git
+    ```
 
-### How to run tests
+    _Note_: this is currently a dev repository to keep making releases in the [original](https://github.com/webdriverio/webdriverio) project. Once we are at a state where this can be released we will force push this master branch to the webdriverio/webdriverio#master branch.
 
-1. Download and install the latest Selenium [standalone server](http://selenium-release.storage.googleapis.com/index.html) and run it via
+* Switch to Node v8 (you should be able to use older/newer versions of Node but we recommend to use v8 so all developers are on the same side)
 
-  ```sh
-  $ java -jar selenium-server-standalone-3.4.0.jar
-  ```
+* Setup project:
 
-  or install it with npm package [selenium-standalone](https://github.com/vvo/selenium-standalone)
-  ```sh
-  $ npm install -g selenium-standalone phantomjs-prebuilt
-  $ selenium-standalone install
-  $ selenium-standalone start
-  ```
+    ```sh
+    $ cd ./webdriverio
+    $ npm install
+    $ npm run setup
+    ```
 
-2. Make sure you have all the dependencies installed
+    * Bootstraps sub-projects via ```npm run bootstrap```
 
-  ```sh
-  $ npm install && npm run build
-  $ cd test/site/www && bower install && cd ../../../
-  ```
-3. In order to run the tests, you must [install the latest ChromeDriver](https://sites.google.com/a/chromium.org/chromedriver/downloads),
-which can also be installed via `brew install chromedriver` or
-`npm -g install chromedriver`.
+        Many packages depend on each other, in order to properly set up the dependency tree you need to run the [Lerna Bootstrap](https://github.com/lerna/lerna#bootstrap) command to create all necessary links. As this project also does some other house keeping tasks it is recommend to use the package bootstrap command:
 
-4. Depending on your feature/fix/patch make sure it gets covered by a test. To ensure that you can run one of the following commands:
+    * Builds all subpackages via ```npm run build```
 
-  ```sh
-  # if your patch is browser specific
-  # (e.g. upload files)
-  npm run test:desktop
+        As the last step you need to build all sub-packages in order to resolve the internal dependencies. We also have a NPM command for that:
 
-  # if your patch is mobile specific
-  # (e.g. flick or swipe tests)
-  npm run test:mobile
-  # or to run each individually
-  npm run test:ios
-  npm run test:android
+* Run Tests to ensure that everything is set up correctly
 
+    ```sh
+    $ npm run test
+    ```
 
-  # if your patch is functional and doesn't have anything to do with Selenium
-  # (e.g. library specific fixes like changes within EventHandler.js)
-  npm run test:functional
+    It should give you a passing result. Now you can move on to setup your development environment and start working on some code.
 
-  # changes to multibrowser functionality
-  # (e.g. actually only changes to /lib/multibrowser.js)
-  npm run test:multibrowser
+## Create New Package
 
-  # wdio test runner changes
-  # (e.g. any changes that reflect the behavior of the test runner e.g. in lib/launcher.js)
-  npm run test:wdio
+All WebdriverIO sub packages require a certain structure to work within the wdio ecosystem. To simplify the process of creating a new sub package we build a NPM script that does all the boilerplate work for you. Just run:
 
-  # anything else unittestable
-  # (e.g. changes to utils and classes)
-  npm run test:unit
-  ```
-
-### Syntax rules
-
-At this point you're waiting on us. We like to at least comment on, if not accept, pull requests within three business days (and, typically, one business day). We may suggest some changes or improvements or alternatives.
-
-Please pay attention on the following syntax rules:
-
-* Four spaces, no tabs.
-* No trailing whitespace. Blank lines should not have any space.
-* Prefer &&/|| over and/or.
-* a = b and not a=b.
-* Follow the conventions you see used in the source already.
-
-And in case we didn't emphasize it enough: we love tests!
-
-------------------------------------------
-
-## Documentation
-
-For convenience and ease of maintenance, our project's documentation pages are generated partly from markdown files in the `docs/` directory and partly from comments in the source code.  
-
-As with code contributions, your first step should be to fork the repo.
-
-### Markdown Pages
-
-Pages in the `docs/` directory follow a common markdown syntax.  In lieu of detailed definitions of this syntax, it's easiest to imitate the format in the existing pages.  Some page attributes can be defined in a YAML block at the beginning of each document, terminated with three or more dashes (i.e. a horizontal line in markdown), for example:
-
-```
-layout: guide
-name: guide
-title: WebdriverIO - Developer Guide
----
+```sh
+$ npm run create
 ```
 
-### API Methods
+It will ask you about the type and name of the new package and creates all the files for you.
 
-The source code for various API methods is located in the `lib/` folder.  To find the source of any API method listed on http://webdriver.io/api.html, you can find the corresponding `.js` file.  For example the [dragAndDrop](http://webdriver.io/api/action/dragAndDrop.html) method is defined in the `lib/commands/dragAndDrop.js` file.  The documentation for each method is generated from documentation blocks in each file.  The syntax relies on block-level comments (e.g. `/** multi-line comment */`, comment-tags for the parameters (e.g. `@param {String=} windowHandle the window to change focus to`), and code samples contained in example tags, (e.g. `<example>...</example>`).  As with the markdown pages, it's easiest to imitate the format of the existing documents.  For example:
+## Work On Packages
 
-```js
-/**
- *
- * Get tag name of a DOM-element found by given selector.
- *
- * <example>
-    :index.html
-    <div id="elem">Lorem ipsum</div>
+If you start making changes to specific packages, make sure you listen on file changes and transpile the code everytime you press save. To do that for all packages, run:
 
-    :getTagName.js
-    client.getTagName('#elem').then(function(tagName) {
-        console.log(tagName); // outputs: "div"
-    });
- * </example>
- *
- * @param   {String}           selector   element with requested tag name
- * @return {String|String[]}             the element's tag name, as a lowercase string
- *
- * @uses protocol/elements, protocol/elementIdName
- * @type property
- *
- */
+```sh
+$ npm run watch
 ```
 
-Here's a quick cheat-sheet:
+If you only work on a single package you can watch only for that one by calling:
 
-1. **Description:** The first few lines of the comment are typically used to provide a concise description of the method.
-
-2. **Examples:** The `<example>` block omits asterisks (`*`) -- see above example.
-
-3. **File Names:** For examples that reference multiple files, infer the file name in the `<example>` block by prefixing its name with a colon.  See `:index.html` and `:getTagName.js` in the above example.
-
-4. **Parameters:** Parameters should type-hint using curly braces, e.g. `{String}` or `{Number}` and may include default arguments following and equals sign, e.g. `{Number=42}`
-
-5. **Type:** The `@type` attribute corresponds to the sections on the API page.  Currently in use are `action`, `appium`, `cookie`, `mobile`, `property`, `protocol`, `state`, `utility`, `window`.  You probably will not ever need to change this.
-
-6. **Return:** Identifies the data type returned and a short description.
-
-7. **Throws:** Identifies common exceptions that may be thrown.
-
-
-When you have completed your updates to the documentation, push to your fork and submit a pull request.
-
-
-### Adding new framework, services or reporters
-
-If you've created a plugin for WebdriverIO please add your documentation to our docs section so we can deploy this to the website. There are three different types of plugins in WebdriverIO: framework adapters, services and reporters.
-
-If you published a new (well tested) framework adapter, please add some decent information about it to `/docs/guide/testrunner/frameworks.md`. It should explain how to write tests and what kind of options it supports (if not already documented in the actual framework).
-
-For reporters or services please create a new markdown file in `/docs/guide/(services|reporters)` that has the name of the plugin and contains the information of the project readme. The file should be introduced with a header section that looks like this:
-
-```
-name: <plugin-name>
-category: <services|reporter>
-tags: guide
-index: <a new index number>
-title: WebdriverIO - <plugin title>
----
+```sh
+# e.g. `$ npm run watch:pkg wdio-runner`
+$ npm run watch:pkg <package-name>
 ```
 
-Make sure you apply a new index property to it so we can keep a sane ordering. Checkout other markdown pages for reporter or services to get a better idea of how this looks like.
+## Test Your Changes
 
-Last but not least make sure you've added the plugin to our cli configurator. For that open `/lib/cli.js` and add your plugin to the dedicated list of frameworks, reporters or services. Please apply the same structure as other plugins.
+In order to test certain scenarios this project has a test directory that allows you to run predefined test. It allows you to check your code changes while you are working on it. You find all these files in `/examples`. You find all necessary information [in there](https://github.com/webdriverio/webdriverio/tree/master/examples/README.md).
+
+## Commit Messages Convention
+
+In order to better identify which changes have been made to which package please add the package name in front of every commit, e.g.:
+
+```sh
+# e.g. `$ git commit -m "wdio-runner: some changes"`
+git commit -m "<package-name>: some changes"
+```
+
+Commits that affect all packages or are not related to any (e.g. changes to NPM scripts or docs) don't need to follow this convention.
+
+## Release New Version
+
+Package releases are made using Lerna's release capabilities and executed by [the technical committee](https://github.com/webdriverio/webdriverio/blob/master/GOVERNANCE.md#the-technical-committee) only. To run it just call:
+
+```sh
+$ npm run release
+```
+
+and choose the appropiate version upgrade based on the [Semantic Versioning](https://semver.org/).

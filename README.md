@@ -1,107 +1,80 @@
-![WebdriverIO](http://www.christian-bromann.com/wdio.png)
-WebdriverIO
-===========
+<p align="center">
+    <a href="http://webdriver.io/">
+        <img alt="WebdriverIO" src="http://www.christian-bromann.com/wdio.png" width="546">
+    </a>
+</p>
 
-[![Build Status](https://travis-ci.org/webdriverio/webdriverio.svg?branch=master)](https://travis-ci.org/webdriverio/webdriverio) [![NPM version](https://badge.fury.io/js/webdriverio.svg)](http://badge.fury.io/js/webdriverio) [![Dependency Status](https://www.versioneye.com/user/projects/58932ea4b166b50039982a32/badge.svg?style=flat-square)](https://www.versioneye.com/user/projects/58932ea4b166b50039982a32) [![npm](https://img.shields.io/npm/dm/webdriverio.svg?maxAge=2592000)]() [![Coveralls](https://img.shields.io/coveralls/webdriverio/webdriverio/master.svg?maxAge=2592000)]() [![Gitter](https://badges.gitter.im/webdriverio/webdriverio.svg)](https://gitter.im/webdriverio/webdriverio?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
-<br><br>
-[![Selenium Test Status](https://saucelabs.com/browser-matrix/webdriverio.svg)](https://saucelabs.com/u/webdriverio)
+<p align="center">
+    Next-gen WebDriver test automation framework for Node.js
+</p>
+
+<p align="center">
+    <a href="https://travis-ci.org/webdriverio/webdriverio.svg?branch=master">
+        <img alt="Build Status" src="https://travis-ci.org/webdriverio/webdriverio.svg?branch=master">
+    </a>
+    <a href="https://codecov.io/gh/webdriverio/webdriverio">
+        <img alt="CodeCov" src="https://codecov.io/gh/webdriverio/webdriverio/branch/master/graph/badge.svg">
+    </a>
+    <a href="https://gitter.im/webdriverio/webdriverio">
+        <img alt="Gitter" src="https://badges.gitter.im/webdriverio/webdriverio.svg">
+    </a>
+</p>
 
 ***
 
-#### [Homepage](http://webdriver.io) | [Developer Guide](http://webdriver.io/guide.html) | [API Reference](http://webdriver.io/api.html) | [Contribute](http://webdriver.io/contribute.html)
+<p align="center">
+    <a href="http://webdriver.io">Homepage</a> |
+    <a href="http://webdriver.io/guide.html">Developer Guide</a> |
+    <a href="http://webdriver.io/api.html">API Reference</a> |
+    <a href="http://webdriver.io/contribute.html">Contribute</a>
+</p>
 
-This library is a [Webdriver](https://w3c.github.io/webdriver/webdriver-spec.html)
-(browser automation) module for Node.JS. It makes it possible to write
-super easy [Selenium](https://en.wikipedia.org/wiki/Selenium_(software)) tests in your favorite
-BDD/TDD test framework, that will run locally or in the cloud using Sauce Labs, BrowserStack or TestingBot.
+***
 
-WebdriverIO is agnostic with regards to the test framework you want to use. Cucumber, Jasmine and Mocha+Chai
-are supported by the configuration wizard.
+WebdriverIO is a test automation framework that allows you to run tests based on the [Webdriver](https://w3c.github.io/webdriver/webdriver-spec.html) protocol and [Appium](http://appium.io/) automation technology. It provides support for your favorite BDD/TDD test framework and will run your tests locally or in the cloud using Sauce Labs, BrowserStack or TestingBot.
 
-## Installation
+## Contributing
 
-```shell
-npm install webdriverio
-```
+Check out our [CONTRIBUTING.md](CONTRIBUTING.md) to get started with setting up the repo. This repository is a development repository for the new version.
 
-or if you want to use the wdio test runner
+We are trying to put up a proper roadmap for the beta release. Until then please reach out in our [Gitter Channel](https://gitter.im/webdriverio/webdriverio) if you have question on where to start contributing.
 
-```shell
-npm install -g webdriverio
-```
+## Packages
 
-## Getting started
+### Core
 
-Simply run `wdio config` and the configuration helper wizard will get you set up:
+- [webdriver](https://github.com/webdriverio/webdriverio/tree/master/packages/webdriver) - A Node.js bindings implementation for the W3C WebDriver and Mobile JSONWire Protocol
+- [webdriverio](https://github.com/webdriverio/webdriverio/blob/master/packages/webdriverio) - A next-gen WebDriver test automation framework for Node.js
+- [wdio-cli](https://github.com/webdriverio/webdriverio/tree/master/packages/wdio-cli) - A WebdriverIO testrunner command line interface
 
-![wdio wizard](http://webdriver.io/images/config-utility.gif)
+### Helper
 
-With all that done, have a look at the many [examples](examples/).
+- [wdio-config](https://github.com/webdriverio/webdriverio/blob/master/packages/wdio-config) - A helper utility to parse and validate WebdriverIO options
+- [wdio-interface](https://github.com/webdriverio/webdriverio/tree/master/packages/wdio-interface) - A WDIO helper utility to provide a cli interface for the testrunner
+- [wdio-logger](https://github.com/webdriverio/webdriverio/tree/master/packages/wdio-logger) - A helper utility for logging of WebdriverIO packages
+- [wdio-reporter](https://github.com/webdriverio/webdriverio/tree/master/packages/wdio-reporter) - A WebdriverIO utility to help reporting all events
+- [wdio-runner](https://github.com/webdriverio/webdriverio/tree/master/packages/wdio-runner) - A WebdriverIO service that runs tests in arbitrary environments
+- [wdio-sync](https://github.com/webdriverio/webdriverio/tree/master/packages/wdio-sync) - A WebdriverIO plugin. Helper module to run WebdriverIO commands synchronously
 
-## Plugins
+### Reporter
 
-[![Grunt Integration](http://webdriver.io/images/plugins/grunt.png)](https://github.com/webdriverio/grunt-webdriver)
-[![Gulp Integration](http://webdriver.io/images/plugins/gulp.png)](https://github.com/webdriverio/gulp-webdriver)
-[![Sublime Text Plugin](http://webdriver.io/images/plugins/sublime.png)](https://packagecontrol.io/packages/WebdriverIO)
-[![Atom.io Plugin](http://webdriver.io/images/plugins/atom.png)](https://atom.io/packages/webdriverio-snippets)
-[![Visual Regression Testing with Applitools Eyes](http://webdriver.io/images/plugins/applitools.png)](https://github.com/webdriverio/webdrivercss#applitools-eyes-support)
-[![WebRTC Analytics Plugin](http://webdriver.io/images/plugins/webrtc.png)](https://github.com/webdriverio/webdriverrtc)
+- [wdio-allure-reporter](https://github.com/webdriverio/webdriverio/tree/master/packages/wdio-allure-reporter) - A WebdriverIO reporter plugin to create Allure Test Reports
+- [wdio-concise-reporter](https://github.com/webdriverio/webdriverio/tree/master/packages/wdio-concise-reporter) - A WebdriverIO reporter plugin to create concise test reports
+- [wdio-dot-reporter](https://github.com/webdriverio/webdriverio/tree/master/packages/wdio-dot-reporter) - A WebdriverIO plugin to report in dot style
+- [wdio-spec-reporter](https://github.com/webdriverio/webdriverio/tree/master/packages/wdio-spec-reporter) - A WebdriverIO plugin to report in spec style
+- [wdio-sumologic-reporter](https://github.com/webdriverio/webdriverio/tree/master/packages/wdio-sumologic-reporter) - A WebdriverIO reporter that sends test results to Sumologic for data analyses
+- [wdio-junit-reporter](https://github.com/webdriverio/webdriverio/tree/master/packages/wdio-junit-reporter) - A WebdriverIO reporter that creates test results in XML format
 
-## Syntax example
+### Services
 
-```js
-browser.url('http://google.com');
-$('#q').setValue('webdriver');
-$('#btnG').click();
-```
+- [wdio-applitools-service](https://github.com/webdriverio/webdriverio/tree/master/packages/wdio-applitools-service) - A WebdriverIO service for visual regression testing using Applitools
+- [wdio-devtools-service](https://github.com/webdriverio/webdriverio/tree/master/packages/wdio-devtools-service) - A WebdriverIO service that allows you to run Chrome DevTools commands in your tests
+- [wdio-firefox-profile-service](https://github.com/webdriverio/webdriverio/tree/master/packages/wdio-firefox-profile-service) - A WebdriverIO service that lets you define your Firefox profile in your wdio.conf.js
+- [wdio-sauce-service](https://github.com/webdriverio/webdriverio/tree/master/packages/wdio-sauce-service) - A WebdriverIO service that provides a better integration into SauceLabs
+- [wdio-testingbot-service](https://github.com/webdriverio/webdriverio/tree/master/packages/wdio-testingbot-service) - A WebdriverIO service that provides a better integration into TestingBot
+- [wdio-selenium-standalon-service](https://github.com/webdriverio/webdriverio/tree/master/packages/wdio-selenium-standalone-service) - A WebdriverIO service that automatically sets up a selenium standalone server
 
-Notice how this is far simpler than with the original [selenium-webdriverjs](https://github.com/SeleniumHQ/selenium/wiki/WebDriverJs),
+### Runner
 
-```js
-driver.get('http://www.google.com');
-driver.findElement(webdriver.By.id('q')).sendKeys('webdriver');
-driver.findElement(webdriver.By.id('btnG')).click();
-```
-
-and significantly simpler than with [WD.js](https://github.com/admc/wd):
-
-```js
-browser
-  .get("http://www.google.com")
-  .elementById('q')
-  .sendKeys('webdriver')
-  .elementById('btnG')
-  .click()
-```
-
-For more details on the comparison between WebdriverIO, selenium-webdriverjs and WD.js,
-read [this discussion](https://github.com/webdriverio/webdriverio/issues/138). Also see more WebdriverIO examples in the [example folder](https://github.com/webdriverio/webdriverio/tree/master/examples).
-
-## Need help?
-
-If you have questions or any problems using WebdriverIO join the [Gitter Chat](https://gitter.im/webdriverio/webdriverio), hit us contributor on
-Twitter or just file an [issue](https://github.com/webdriverio/webdriverio/issues) on Github. We will try to get back to you as soon as possible.
-
-Also if you miss any feature, let us know so we can make WebdriverIO even better. For news or
-announcements check [@WebdriverIO](http://twitter.com/webdriverio) on Twitter.
-
-
-## NPM Maintainers
-
-The [npm module](https://www.npmjs.com/package/webdriverio) for this library is maintained by:
-
-* [Christian Bromann](https://github.com/christian-bromann)
-* [George Crawford](https://github.com/georgecrawford)
-* [Vincent Voyer](https://github.com/vvo)
-* [Camilo Tapia](http://github.com/Camme)
-
-## History
-
-WebdriverIO was originated by [Camilo Tapia's](https://github.com/camme) initial
-Selenium project called WebdriverJS, which was the first webdriver project on NPM.
-In 2014, the project was renamed WebdriverIO later on.
-
-
-### License
-
-MIT
+- [wdio-local-runner](https://github.com/webdriverio/webdriverio/tree/master/packages/wdio-local-runner) - A WebdriverIO runner to run tests locally
+- [wdio-lambda-runner](https://github.com/webdriverio/webdriverio/tree/master/packages/wdio-lambda-runner) - A WebdriverIO plugin that allows you to run tests on AWS using Lambda functions

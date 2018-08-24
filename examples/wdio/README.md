@@ -1,7 +1,16 @@
-# WDIO
+# WDIO Testrunner Examples
 
-This directory contains config files for each framework for the wdio test runner. It also shows you how to run multiremote test with the test runner as well as WebdriverCSS tests. To execute the framework configs you need the desired framework installed locally. Then just run the wdio executable from the root directory of the WebdriverIO repository:
+This directory contains examples for each framework for the wdio test runner. It also shows you how to run multiremote test with the test runner or how to embed a custom reporter. To run the test call the following commands:
 
 ```sh
-./bin/wdio examples/wdio/wdio.mocha.conf.js
+# mocha tests
+$ npm run test:mocha
+# jasmine tests
+$ npm run test:jasmine
+# cucumber tests
+$ npm run test:cucumber
+# testsuite with multiremote
+$ npm run test:multiremote
+# test suite with custome reporter
+$ npm run test:customReporter
 ```

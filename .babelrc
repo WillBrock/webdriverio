@@ -2,14 +2,17 @@
   "presets": [
     ["env", {
       "targets": {
-        "node": "4.4"
+        "node": "6"
       }
-    }],
-    "stage-0"
+    }]
   ],
   "plugins": [
-    "transform-runtime",
+    "transform-function-bind",
     "add-module-exports",
-    "array-includes"
+    "transform-class-properties",
+    ["babel-plugin-stack-trace-sourcemap", {
+        "importOverride": ["source-map-support", "install", "_sourceMapSupport"],
+        "execute": true
+    }]
   ]
 }
