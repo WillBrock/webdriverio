@@ -1,5 +1,7 @@
 # CHANGELOG
 
+#  Foo
+
 ## v4.12.0 (2018-03-07)
 * global changes:
     * docs improvements
