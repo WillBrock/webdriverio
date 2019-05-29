@@ -6,6 +6,8 @@ import { SHUTDOWN_TIMEOUT, BUFFER_OPTIONS } from './constants'
 
 const log = logger('@wdio/local-runner')
 
+/* eslint-disable */
+
 export default class LocalRunner {
     constructor (configFile, config) {
         this.configFile = configFile
@@ -28,11 +30,15 @@ export default class LocalRunner {
         /**
          * adjust max listeners on stdout/stderr when creating listeners
          */
+        console.log(workerCnt, `worker count`)
+        console.log(process.stdout.getMaxListeners(), `max listeners before`)
         const workerCnt = this.getWorkerCount()
         if (workerCnt >= process.stdout.getMaxListeners() - 2) {
-            process.stdout.setMaxListeners(workerCnt + 2)
-            process.stderr.setMaxListeners(workerCnt + 2)
+            process.stdout.setMaxListeners(workerCnt + 3)
+            process.stderr.setMaxListeners(workerCnt + 3)
         }
+
+        console.log(process.stdout.getMaxListeners(), `max listeners after`)
 
         const worker = new WorkerInstance(this.config, options, this.stdout, this.stderr)
         this.workerPool[options.cid] = worker
