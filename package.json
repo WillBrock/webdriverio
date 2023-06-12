@@ -78,7 +78,7 @@
     "@types/inquirer": "^9.0.3",
     "@types/lodash.clonedeep": "^4.5.7",
     "@types/lodash.zip": "^4.2.7",
-    "@types/node": "^18.15.3",
+    "@types/node": "^20.3.0",
     "@types/shelljs": "^0.8.11",
     "@types/split2": "^3.2.1",
     "@types/uuid": "^9.0.1",
